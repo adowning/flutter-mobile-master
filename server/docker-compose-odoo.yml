@@ -1,0 +1,17 @@
+version: '3.3'
+services:
+
+  postgres:
+    image: postgres:9.5
+    environment:
+      - POSTGRES_USER=odoo
+
+  odoo:
+    image: elicocorp/odoo:11.0
+    command: start
+    ports:
+      - 127.0.0.1:8069:8069
+    links:
+      - postgres:db
+    environment:
+      - ODOO_DB_USER=odoo
