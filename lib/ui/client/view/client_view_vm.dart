@@ -5,6 +5,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:invoiceninja_flutter/redux/invoice/invoice_actions.dart';
 import 'package:invoiceninja_flutter/redux/payment/payment_actions.dart';
 import 'package:invoiceninja_flutter/redux/project/project_actions.dart';
+import 'package:invoiceninja_flutter/redux/shopwork/shopwork_actions.dart';
 import 'package:invoiceninja_flutter/redux/quote/quote_actions.dart';
 import 'package:invoiceninja_flutter/redux/task/task_actions.dart';
 import 'package:invoiceninja_flutter/redux/ui/ui_actions.dart';
@@ -137,6 +138,20 @@ class ClientViewVM {
                 store.dispatch(ViewProjectList(context));
               }
               break;
+
+            case EntityType.shopwork:
+              if (longPress) {
+                store.dispatch(EditShopwork(
+                    context: context,
+                    shopwork: ShopworkEntity()
+                        .rebuild((b) => b..clientId = client.id)));
+              } else {
+                store.dispatch(FilterShopworksByEntity(
+                    entityId: client.id, entityType: EntityType.client));
+                store.dispatch(ViewShopworkList(context));
+              }
+              break;
+
             case EntityType.task:
               if (longPress) {
                 store.dispatch(EditTask(

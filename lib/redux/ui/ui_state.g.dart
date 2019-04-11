@@ -67,6 +67,9 @@ class _$UIStateSerializer implements StructuredSerializer<UIState> {
       'projectUIState',
       serializers.serialize(object.projectUIState,
           specifiedType: const FullType(ProjectUIState)),
+      // 'shopworkUIState',
+      // serializers.serialize(object.shopworkUIState,
+      //     specifiedType: const FullType(ShopworkUIState)),
       'paymentUIState',
       serializers.serialize(object.paymentUIState,
           specifiedType: const FullType(PaymentUIState)),
@@ -148,6 +151,11 @@ class _$UIStateSerializer implements StructuredSerializer<UIState> {
           result.projectUIState.replace(serializers.deserialize(value,
               specifiedType: const FullType(ProjectUIState)) as ProjectUIState);
           break;
+        case 'shopworkUIState':
+          result.shopworkUIState.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(ShopworkUIState))
+              as ShopworkUIState);
+          break;
         case 'paymentUIState':
           result.paymentUIState.replace(serializers.deserialize(value,
               specifiedType: const FullType(PaymentUIState)) as PaymentUIState);
@@ -191,6 +199,8 @@ class _$UIState extends UIState {
   @override
   final ProjectUIState projectUIState;
   @override
+  final ShopworkUIState shopworkUIState;
+  @override
   final PaymentUIState paymentUIState;
   @override
   final QuoteUIState quoteUIState;
@@ -212,6 +222,7 @@ class _$UIState extends UIState {
       this.filter,
       this.taskUIState,
       this.projectUIState,
+      this.shopworkUIState,
       this.paymentUIState,
       this.quoteUIState})
       : super._() {
@@ -251,6 +262,9 @@ class _$UIState extends UIState {
     if (projectUIState == null) {
       throw new BuiltValueNullFieldError('UIState', 'projectUIState');
     }
+    if (shopworkUIState == null) {
+      throw new BuiltValueNullFieldError('UIState', 'shopworkUIState');
+    }
     if (paymentUIState == null) {
       throw new BuiltValueNullFieldError('UIState', 'paymentUIState');
     }
@@ -283,6 +297,7 @@ class _$UIState extends UIState {
         filter == other.filter &&
         taskUIState == other.taskUIState &&
         projectUIState == other.projectUIState &&
+        shopworkUIState == other.shopworkUIState &&
         paymentUIState == other.paymentUIState &&
         quoteUIState == other.quoteUIState;
   }
@@ -296,6 +311,7 @@ class _$UIState extends UIState {
                     $jc(
                         $jc(
                             $jc(
+                                // $jc(
                                 $jc(
                                     $jc(
                                         $jc(
@@ -322,6 +338,7 @@ class _$UIState extends UIState {
                         filter.hashCode),
                     taskUIState.hashCode),
                 projectUIState.hashCode),
+            // shopworkUiState.hashCode),
             paymentUIState.hashCode),
         quoteUIState.hashCode));
   }
@@ -342,6 +359,7 @@ class _$UIState extends UIState {
           ..add('filter', filter)
           ..add('taskUIState', taskUIState)
           ..add('projectUIState', projectUIState)
+          ..add('shopworkUIState', shopworkUIState)
           ..add('paymentUIState', paymentUIState)
           ..add('quoteUIState', quoteUIState))
         .toString();
@@ -419,6 +437,12 @@ class UIStateBuilder implements Builder<UIState, UIStateBuilder> {
   set projectUIState(ProjectUIStateBuilder projectUIState) =>
       _$this._projectUIState = projectUIState;
 
+  ShopworkUIStateBuilder _shopworkUIState;
+  ShopworkUIStateBuilder get shopworkUIState =>
+      _$this._shopworkUIState ??= new ShopworkUIStateBuilder();
+  set shopworkUIState(ShopworkUIStateBuilder shopworkUIState) =>
+      _$this._shopworkUIState = shopworkUIState;
+
   PaymentUIStateBuilder _paymentUIState;
   PaymentUIStateBuilder get paymentUIState =>
       _$this._paymentUIState ??= new PaymentUIStateBuilder();
@@ -448,6 +472,7 @@ class UIStateBuilder implements Builder<UIState, UIStateBuilder> {
       _filter = _$v.filter;
       _taskUIState = _$v.taskUIState?.toBuilder();
       _projectUIState = _$v.projectUIState?.toBuilder();
+      _shopworkUIState = _$v.shopworkUIState?.toBuilder();
       _paymentUIState = _$v.paymentUIState?.toBuilder();
       _quoteUIState = _$v.quoteUIState?.toBuilder();
       _$v = null;
@@ -487,6 +512,7 @@ class UIStateBuilder implements Builder<UIState, UIStateBuilder> {
               filter: filter,
               taskUIState: taskUIState.build(),
               projectUIState: projectUIState.build(),
+              shopworkUIState: shopworkUIState.build(),
               paymentUIState: paymentUIState.build(),
               quoteUIState: quoteUIState.build());
     } catch (_) {
@@ -505,6 +531,8 @@ class UIStateBuilder implements Builder<UIState, UIStateBuilder> {
         taskUIState.build();
         _$failedField = 'projectUIState';
         projectUIState.build();
+        _$failedField = 'shopworkUIState';
+        shopworkUIState.build();
         _$failedField = 'paymentUIState';
         paymentUIState.build();
         _$failedField = 'quoteUIState';

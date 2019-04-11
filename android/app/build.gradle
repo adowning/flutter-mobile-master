@@ -19,17 +19,20 @@ def keystoreProperties = new Properties()
 keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
 android {
-    compileSdkVersion 27
-
+    compileSdkVersion 28
+configurations {
+    all*.exclude group: 'com.google.guava', module: 'listenablefuture'
+}
     lintOptions {
         disable 'InvalidPackage'
     }
 
     defaultConfig {
         applicationId "com.andrews.andrewsapp"
-        minSdkVersion 18
-        targetSdkVersion 27
+        minSdkVersion 22
+        targetSdkVersion 28
         versionCode 40
+                // multiDexEnabled true
         versionName "0.1.40"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -42,6 +45,9 @@ android {
             storePassword keystoreProperties['storePassword']
         }
     }
+      aaptOptions {  
+    additionalParameters "--no-version-vectors"  
+  }
     buildTypes {
         release {
             signingConfig signingConfigs.release
@@ -62,6 +68,8 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'com.google.firebase:firebase-core:16.0.5'
+
+
 }
 
 apply plugin: 'com.google.gms.google-services'

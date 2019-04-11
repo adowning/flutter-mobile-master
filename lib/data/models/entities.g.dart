@@ -28,6 +28,7 @@ const EntityType _$client = const EntityType._('client');
 const EntityType _$contact = const EntityType._('contact');
 const EntityType _$task = const EntityType._('task');
 const EntityType _$project = const EntityType._('project');
+const EntityType _$shopwork = const EntityType._('shopwork');
 const EntityType _$expense = const EntityType._('expense');
 const EntityType _$vendor = const EntityType._('vendor');
 const EntityType _$credit = const EntityType._('credit');
@@ -60,6 +61,8 @@ EntityType _$typeValueOf(String name) {
       return _$task;
     case 'project':
       return _$project;
+    case 'shopwork':
+      return _$shopwork;
     case 'expense':
       return _$expense;
     case 'vendor':
@@ -98,6 +101,7 @@ final BuiltSet<EntityType> _$typeValues =
   _$contact,
   _$task,
   _$project,
+  _$shopwork,
   _$expense,
   _$vendor,
   _$credit,

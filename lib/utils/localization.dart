@@ -58,7 +58,13 @@ class AppLocalization {
       'archived_project': 'Successfully archived project',
       'deleted_project': 'Successfully deleted project',
       'restored_project': 'Successfully restored project',
+      'created_shopwork': 'Successfully created shopwork',
+      'updated_shopwork': 'Successfully updated shopwork',
+      'archived_shopwork': 'Successfully archived shopwork',
+      'deleted_shopwork': 'Successfully deleted shopwork',
+      'restored_shopwork': 'Successfully restored shopwork',
       'new_project': 'New Project',
+      'new_shopwork': 'New Shopwork',
       'thank_you_for_using_our_app': 'Thank you for using our app!',
       'if_you_like_it': 'If you like it please',
       'click_here': 'click here',
@@ -111,6 +117,7 @@ class AppLocalization {
       'edit_expense': 'Edit Expense',
       'edit_vendor': 'Edit Vendor',
       'edit_project': 'Edit Project',
+      'edit_shopwork': 'Edit Shopwork',
       'edit_credit': 'Edit Credit',
       'edit_recurring_invoice': 'Edit Recurring Invoice',
       'edit_recurring_expense': 'Edit Recurring Expense',
@@ -345,6 +352,8 @@ class AppLocalization {
       'tasks': 'Tasks',
       'project': 'Project',
       'projects': 'Projects',
+      'shopwork': 'Shopwork',
+      'shopworks': 'Shopworks',
       'activity_1': ':user created client :client',
       'activity_2': ':user archived client :client',
       'activity_3': ':user deleted client :client',
@@ -4605,7 +4614,7 @@ class AppLocalization {
       'restored_project': 'Projekt erfolgreich wiederhergestellt',
       'new_project': 'neues Projekt',
       'thank_you_for_using_our_app': 'Vielen Dank, dass Sie unsere App nutzen!',
-      'if_you_like_it': 'Wenn es dir gefällt, bitte',
+      'if_you_like_it': 'Wenn es dir gef������llt, bitte',
       'click_here': 'hier klicken',
       'to_rate_it': ', um es zu bewerten.',
       'average': 'Durchschnittlich',
@@ -11412,7 +11421,23 @@ class AppLocalization {
   String get restoredProject =>
       _localizedValues[locale.toString()]['restored_project'];
 
+  String get createdShopwork =>
+      _localizedValues[locale.toString()]['created_shopwork'];
+
+  String get updatedShopwork =>
+      _localizedValues[locale.toString()]['updated_shopwork'];
+
+  String get archivedShopwork =>
+      _localizedValues[locale.toString()]['archived_shopwork'];
+
+  String get deletedShopwork =>
+      _localizedValues[locale.toString()]['deleted_shopwork'];
+
+  String get restoredShopwork =>
+      _localizedValues[locale.toString()]['restored_shopwork'];
+
   String get newProject => _localizedValues[locale.toString()]['new_project'];
+  String get newShopwork => _localizedValues[locale.toString()]['new_shopwork'];
 
   String get thankYouForUsingOurApp =>
       _localizedValues[locale.toString()]['thank_you_for_using_our_app'];
@@ -11528,6 +11553,8 @@ class AppLocalization {
   String get editVendor => _localizedValues[locale.toString()]['edit_vendor'];
 
   String get editProject => _localizedValues[locale.toString()]['edit_project'];
+  String get editShopwork =>
+      _localizedValues[locale.toString()]['edit_shopwork'];
 
   String get editCredit => _localizedValues[locale.toString()]['edit_credit'];
 

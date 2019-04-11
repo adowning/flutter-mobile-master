@@ -16,6 +16,7 @@ import 'package:built_value/serializer.dart';
 import 'package:invoiceninja_flutter/redux/task/task_state.dart';
 
 import 'package:invoiceninja_flutter/redux/project/project_state.dart';
+import 'package:invoiceninja_flutter/redux/shopwork/shopwork_state.dart';
 
 import 'package:invoiceninja_flutter/redux/payment/payment_state.dart';
 
@@ -112,6 +113,8 @@ abstract class AppState implements Built<AppState, AppStateBuilder> {
 
       case EntityType.project:
         return projectUIState;
+      case EntityType.shopwork:
+        return shopworkUIState;
       case EntityType.payment:
         return paymentUIState;
       case EntityType.quote:
@@ -152,12 +155,17 @@ abstract class AppState implements Built<AppState, AppStateBuilder> {
   TaskUIState get taskUIState => uiState.taskUIState;
 
   ProjectState get projectState => selectedCompanyState.projectState;
+  ShopworkState get shopworkState => selectedCompanyState.shopworkState;
 
   ListUIState get projectListState => uiState.projectUIState.listUIState;
 
   ProjectUIState get projectUIState => uiState.projectUIState;
 
   PaymentState get paymentState => selectedCompanyState.paymentState;
+
+  ListUIState get shopworkListState => uiState.shopworkUIState.listUIState;
+
+  ShopworkUIState get shopworkUIState => uiState.shopworkUIState;
 
   ListUIState get paymentListState => uiState.paymentUIState.listUIState;
 

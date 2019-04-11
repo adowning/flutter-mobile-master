@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:invoiceninja_flutter/ui/app/buttons/elevated_button.dart';
 import 'package:invoiceninja_flutter/ui/app/progress_button.dart';
 import 'package:invoiceninja_flutter/ui/auth/login_vm.dart';
+import 'package:invoiceninja_flutter/ui/auth/scan_widget.dart';
 import 'package:invoiceninja_flutter/utils/formatting.dart';
 import 'package:invoiceninja_flutter/utils/localization.dart';
 import 'package:invoiceninja_flutter/ui/app/form_card.dart';
@@ -29,6 +30,7 @@ class _LoginState extends State<LoginView> {
   final _oneTimePasswordController = TextEditingController();
 
   static const String OTP_ERROR = 'OTP_REQUIRED';
+  static bool _isScanning;
 
   static final ValueKey _emailKey = Key(LoginKeys.email);
   static final ValueKey _passwordKey = Key(LoginKeys.password);
@@ -48,7 +50,13 @@ class _LoginState extends State<LoginView> {
     _passwordController.text = state.password;
     _urlController.text = formatApiUrlReadable(state.url);
     _secretController.text = state.secret;
-
+    _isScanning = false;
+    //     controller = new AnimationController(
+    //     vsync: this, duration: new Duration(milliseconds: 1500));
+    // animation = new Tween(begin: 0.0, end: 1.0).animate(
+    //     new CurvedAnimation(parent: controller, curve: Curves.fastOutSlowIn));
+    // animation.addListener(() => this.setState(() {}));
+    // controller.forward();
     super.didChangeDependencies();
   }
 
@@ -58,6 +66,7 @@ class _LoginState extends State<LoginView> {
     _passwordController.dispose();
     _urlController.dispose();
     _secretController.dispose();
+    _isScanning = false;
 
     super.dispose();
   }
@@ -86,6 +95,10 @@ class _LoginState extends State<LoginView> {
         url: 'https://billing.ashdevtools.com',
         secret: 'password',
         oneTimePassword: '');
+  }
+
+  Widget _scannerView() {
+    return Container();
   }
 
   @override
@@ -127,147 +140,25 @@ class _LoginState extends State<LoginView> {
               child: Image.asset('assets/images/logo.png',
                   width: 100.0, height: 100.0),
             ),
-            Form(
-              key: _formKey,
-              child: FormCard(
-                children: <Widget>[
-                  ProgressButton(
-                    padding: EdgeInsets.only(top: 12.0, bottom: 12.0),
-                    isLoading: viewModel.isLoading,
-                    label: localization.login.toUpperCase(),
-                    onPressed: () => _submitForm(),
-                  ),
-                  // isOneTimePassword
-                  //     ? TextFormField(
-                  //         controller: _oneTimePasswordController,
-                  //         key: _oneTimePasswordKey,
-                  //         autocorrect: false,
-                  //         decoration: InputDecoration(
-                  //             labelText: localization.oneTimePassword),
-                  //       )
-                  //     : Column(
-                  //         children: <Widget>[
-                  //           TextFormField(
-                  //             controller: _emailController,
-                  //             key: _emailKey,
-                  //             autocorrect: false,
-                  //             textInputAction: TextInputAction.next,
-                  //             decoration: InputDecoration(
-                  //                 labelText: localization.email),
-                  //             keyboardType: TextInputType.emailAddress,
-                  //             autovalidate: _autoValidate,
-                  //             validator: (val) =>
-                  //                 val.isEmpty || val.trim().isEmpty
-                  //                     ? localization.pleaseEnterYourEmail
-                  //                     : null,
-                  //             onFieldSubmitted: (String value) =>
-                  //                 FocusScope.of(context)
-                  //                     .requestFocus(_focusNode1),
-                  //           ),
-                  //           TextFormField(
-                  //             controller: _passwordController,
-                  //             key: _passwordKey,
-                  //             autocorrect: false,
-                  //             autovalidate: _autoValidate,
-                  //             decoration: InputDecoration(
-                  //                 labelText: localization.password),
-                  //             validator: (val) =>
-                  //                 val.isEmpty || val.trim().isEmpty
-                  //                     ? localization.pleaseEnterYourPassword
-                  //                     : null,
-                  //             obscureText: true,
-                  //             focusNode: _focusNode1,
-                  //             onFieldSubmitted: (value) => _submitForm(),
-                  //           ),
-                  //           _isSelfHosted
-                  //               ? TextFormField(
-                  //                   controller: _urlController,
-                  //                   key: _urlKey,
-                  //                   autocorrect: false,
-                  //                   autovalidate: _autoValidate,
-                  //                   decoration: InputDecoration(
-                  //                       labelText: localization.url),
-                  //                   validator: (val) =>
-                  //                       val.isEmpty || val.trim().isEmpty
-                  //                           ? localization.pleaseEnterYourUrl
-                  //                           : null,
-                  //                   keyboardType: TextInputType.url,
-                  //                 )
-                  //               : Container(),
-                  //           _isSelfHosted
-                  //               ? TextFormField(
-                  //                   controller: _secretController,
-                  //                   key: _secretKey,
-                  //                   autocorrect: false,
-                  //                   decoration: InputDecoration(
-                  //                       labelText: localization.secret),
-                  //                   obscureText: true,
-                  //                 )
-                  //               : Container(),
-                  //         ],
-                  //       ),
-                  // viewModel.authState.error == null || error.contains(OTP_ERROR)
-                  //     ? Container()
-                  //     : Container(
-                  //         padding: EdgeInsets.only(top: 26.0),
-                  //         child: Center(
-                  //           child: Text(
-                  //             viewModel.authState.error,
-                  //             style: TextStyle(
-                  //               color: Colors.red,
-                  //               fontWeight: FontWeight.bold,
-                  //             ),
-                  //           ),
-                  //         ),
-                  //       ),
-                  // SizedBox(height: 24.0),
-                  // ProgressButton(
-                  //   padding: EdgeInsets.only(top: 12.0, bottom: 12.0),
-                  //   isLoading: viewModel.isLoading,
-                  //   label: localization.login.toUpperCase(),
-                  //   onPressed: () => _submitForm(),
-                  // ),
-                  // isOneTimePassword
-                  //     ? Container()
-                  //     : Row(
-                  //         mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  //         children: <Widget>[
-                  //           _isSelfHosted
-                  //               ? FlatButton(
-                  //                   onPressed: () =>
-                  //                       setState(() => _isSelfHosted = false),
-                  //                   child: Text(localization.hostedLogin))
-                  //               : FlatButton(
-                  //                   key: Key(LoginKeys.loginSelfHost),
-                  //                   onPressed: () =>
-                  //                       setState(() => _isSelfHosted = true),
-                  //                   child: Text(localization.selfhostLogin)),
-                  //           FlatButton(
-                  //               onPressed: () => viewModel.onGoogleLoginPressed(
-                  //                   context,
-                  //                   _urlController.text,
-                  //                   _secretController.text),
-                  //               child: Text(localization.googleLogin)),
-                  //         ],
-                  //       ),
-                  // isOneTimePassword && !viewModel.isLoading
-                  //     ? Padding(
-                  //         padding: EdgeInsets.only(top: 12.0, bottom: 12.0),
-                  //         child: ElevatedButton(
-                  //           label: localization.cancel.toUpperCase(),
-                  //           color: Colors.grey,
-                  //           onPressed: () {
-                  //             setState(() {
-                  //               _oneTimePasswordController.text = '';
-                  //             });
-                  //             viewModel.onCancel2FAPressed();
-                  //           },
-                  //         ),
-                  //       )
-                  //     : Container(),
-                ],
-              ),
-            ),
+            (!_isScanning)
+                ? Form(
+                    key: _formKey,
+                    child: FormCard(
+                      children: <Widget>[
+                        Container(width: 300, height: 250),
+                        ProgressButton(
+                          padding: EdgeInsets.only(top: 12.0, bottom: 12.0),
+                          isLoading: viewModel.isLoading,
+                          label: localization.login.toUpperCase(),
+                          // onPressed: () => _submitForm(),
+                          onPressed: () => setState(() {
+                                _isScanning = true;
+                              }),
+                        )
+                      ],
+                    ),
+                  )
+                : ScanWidget(viewModel: viewModel),
           ],
         ),
       ],

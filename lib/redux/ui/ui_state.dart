@@ -11,6 +11,7 @@ import 'package:invoiceninja_flutter/ui/auth/login_vm.dart';
 import 'package:invoiceninja_flutter/redux/task/task_state.dart';
 
 import 'package:invoiceninja_flutter/redux/project/project_state.dart';
+import 'package:invoiceninja_flutter/redux/shopwork/shopwork_state.dart';
 
 import 'package:invoiceninja_flutter/redux/payment/payment_state.dart';
 
@@ -35,6 +36,7 @@ abstract class UIState implements Built<UIState, UIStateBuilder> {
       // STARTER: constructor - do not remove comment
       taskUIState: TaskUIState(),
       projectUIState: ProjectUIState(),
+      shopworkUIState: ShopworkUIState(),
       paymentUIState: PaymentUIState(),
       quoteUIState: QuoteUIState(),
     );
@@ -69,6 +71,7 @@ abstract class UIState implements Built<UIState, UIStateBuilder> {
   TaskUIState get taskUIState;
 
   ProjectUIState get projectUIState;
+  ShopworkUIState get shopworkUIState;
 
   PaymentUIState get paymentUIState;
 

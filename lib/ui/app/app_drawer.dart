@@ -104,22 +104,24 @@ class AppDrawer extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Expanded(
-                  child: Center(
-                      child: viewModel.selectedCompany.logoUrl != null &&
-                              viewModel.selectedCompany.logoUrl.isNotEmpty
-                          ? CachedNetworkImage(
-                              key: ValueKey(viewModel.selectedCompany.logoUrl),
-                              imageUrl: viewModel.selectedCompany.logoUrl,
-                              placeholder: CircularProgressIndicator(),
-                              errorWidget: Image.asset('assets/images/logo.png',
-                                  width: 100.0, height: 100.0),
-                            )
-                          : Image.asset('assets/images/logo.png',
-                              width: 100.0, height: 100.0)),
-                ),
-                SizedBox(
-                  height: 18.0,
-                ),
+                    child: Row(
+                  children: <Widget>[
+                    viewModel.selectedCompany.logoUrl != null &&
+                            viewModel.selectedCompany.logoUrl.isNotEmpty
+                        ? CachedNetworkImage(
+                            key: ValueKey(viewModel.selectedCompany.logoUrl),
+                            imageUrl: viewModel.selectedCompany.logoUrl,
+                            placeholder: CircularProgressIndicator(),
+                            errorWidget: Image.asset('assets/images/logo.png',
+                                width: 100.0, height: 100.0),
+                          )
+                        : Image.asset('assets/images/logo.png',
+                            width: 100.0, height: 100.0)
+                  ],
+                )),
+                // SizedBox(
+                //   height: 2.0,
+                // ),
                 Row(
                   children: <Widget>[
                     Expanded(
@@ -236,45 +238,45 @@ class AppDrawer extends StatelessWidget {
                   context: context));
             },
           ),
-          ListTile(
-            dense: true,
-            leading: Icon(FontAwesomeIcons.building, size: 22.0),
-            title: Text('Vendors & Expenses'),
-            onTap: () {
-              showDialog<AlertDialog>(
-                context: context,
-                builder: (BuildContext context) => AlertDialog(
-                      semanticLabel: 'Vendors & Expenses',
-                      title: Text('Vendors & Expenses'),
-                      content: RichText(
-                        text: TextSpan(
-                          children: <TextSpan>[
-                            TextSpan(
-                              style: aboutTextStyle,
-                              text: localization.thanksForPatience + ' ',
-                            ),
-                            _LinkTextSpan(
-                              style: linkStyle,
-                              url: getLegacyAppURL(context),
-                              text: localization.legacyMobileApp,
-                            ),
-                            TextSpan(
-                              style: aboutTextStyle,
-                              text: '.',
-                            ),
-                          ],
-                        ),
-                      ),
-                      actions: <Widget>[
-                        FlatButton(
-                          child: Text(localization.ok.toUpperCase()),
-                          onPressed: () => Navigator.pop(context),
-                        )
-                      ],
-                    ),
-              );
-            },
-          ),
+          // ListTile(
+          //   dense: true,
+          //   leading: Icon(FontAwesomeIcons.building, size: 22.0),
+          //   title: Text('Vendors & Expenses'),
+          //   onTap: () {
+          //     showDialog<AlertDialog>(
+          //       context: context,
+          //       builder: (BuildContext context) => AlertDialog(
+          //             semanticLabel: 'Vendors & Expenses',
+          //             title: Text('Vendors & Expenses'),
+          //             content: RichText(
+          //               text: TextSpan(
+          //                 children: <TextSpan>[
+          //                   TextSpan(
+          //                     style: aboutTextStyle,
+          //                     text: localization.thanksForPatience + ' ',
+          //                   ),
+          //                   _LinkTextSpan(
+          //                     style: linkStyle,
+          //                     url: getLegacyAppURL(context),
+          //                     text: localization.legacyMobileApp,
+          //                   ),
+          //                   TextSpan(
+          //                     style: aboutTextStyle,
+          //                     text: '.',
+          //                   ),
+          //                 ],
+          //               ),
+          //             ),
+          //             actions: <Widget>[
+          //               FlatButton(
+          //                 child: Text(localization.ok.toUpperCase()),
+          //                 onPressed: () => Navigator.pop(context),
+          //               )
+          //             ],
+          //           ),
+          //     );
+          //   },
+          // ),
           DrawerTile(
             company: company,
             icon: FontAwesomeIcons.cog,
@@ -286,14 +288,14 @@ class AppDrawer extends StatelessWidget {
           ),
           AboutListTile(
             icon: Icon(FontAwesomeIcons.info, size: 22.0),
-            applicationName: 'Invoice Ninja',
+            applicationName: 'Andrews App',
             applicationIcon: Image.asset(
               'assets/images/logo.png',
               width: 40.0,
               height: 40.0,
             ),
             applicationVersion: 'Version ' + kAppVersion,
-            applicationLegalese: '© 2018 Invoice Ninja',
+            applicationLegalese: '© 2019 Andrews Group',
             aboutBoxChildren: <Widget>[
               Padding(
                 padding: const EdgeInsets.only(top: 24.0),
@@ -302,19 +304,17 @@ class AppDrawer extends StatelessWidget {
                     children: <TextSpan>[
                       TextSpan(
                         style: aboutTextStyle,
-                        text: localization.thankYouForUsingOurApp +
-                            '\n\n' +
-                            localization.ifYouLikeIt,
+                        text: 'Never again.',
                       ),
-                      _LinkTextSpan(
-                        style: linkStyle,
-                        url: getAppURL(context),
-                        text: ' ' + localization.clickHere + ' ',
-                      ),
-                      TextSpan(
-                        style: aboutTextStyle,
-                        text: localization.toRateIt,
-                      ),
+                      // _LinkTextSpan(
+                      //   style: linkStyle,
+                      //   url: getAppURL(context),
+                      //   text: ' ' + localization.clickHere + ' ',
+                      // ),
+                      // TextSpan(
+                      //   style: aboutTextStyle,
+                      //   text: localization.toRateIt,
+                      // ),
                     ],
                   ),
                 ),

@@ -12,6 +12,7 @@ import 'package:redux/redux.dart';
 import 'package:invoiceninja_flutter/redux/task/task_reducer.dart';
 
 import 'package:invoiceninja_flutter/redux/project/project_reducer.dart';
+import 'package:invoiceninja_flutter/redux/shopwork/shopwork_reducer.dart';
 
 import 'package:invoiceninja_flutter/redux/payment/payment_reducer.dart';
 
@@ -36,6 +37,7 @@ UIState uiReducer(UIState state, dynamic action) {
     // STARTER: reducer - do not remove comment
     ..taskUIState.replace(taskUIReducer(state.taskUIState, action))
     ..projectUIState.replace(projectUIReducer(state.projectUIState, action))
+    ..shopworkUIState.replace(shopworkUIReducer(state.shopworkUIState, action))
     ..paymentUIState.replace(paymentUIReducer(state.paymentUIState, action))
     ..quoteUIState.replace(quoteUIReducer(state.quoteUIState, action)));
 }
@@ -68,7 +70,8 @@ Reducer<bool> autoStartTasksReducer = combineReducers([
   TypedReducer<bool, UserSettingsChanged>(updateAutoStartTasksReducer),
 ]);
 
-bool updateAutoStartTasksReducer(bool autoStartTasks, UserSettingsChanged action) {
+bool updateAutoStartTasksReducer(
+    bool autoStartTasks, UserSettingsChanged action) {
   return action.autoStartTasks ?? autoStartTasks;
 }
 

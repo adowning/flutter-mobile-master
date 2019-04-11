@@ -20,6 +20,7 @@ class EntityType extends EnumClass {
   static const EntityType contact = _$contact;
   static const EntityType task = _$task;
   static const EntityType project = _$project;
+  static const EntityType shopwork = _$shopwork;
   static const EntityType expense = _$expense;
   static const EntityType vendor = _$vendor;
   static const EntityType credit = _$credit;
@@ -281,6 +282,8 @@ class CustomFieldType {
   static const String task2 = 'task2';
   static const String project1 = 'project1';
   static const String project2 = 'project2';
+  static const String shopwork1 = 'shopwork1';
+  static const String shopwork2 = 'shopwork2';
   static const String expense1 = 'expense1';
   static const String expense2 = 'expense2';
   static const String vendor1 = 'vendor1';

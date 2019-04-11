@@ -10,6 +10,7 @@ import 'package:built_value/serializer.dart';
 import 'package:invoiceninja_flutter/redux/task/task_state.dart';
 
 import 'package:invoiceninja_flutter/redux/project/project_state.dart';
+import 'package:invoiceninja_flutter/redux/shopwork/shopwork_state.dart';
 
 import 'package:invoiceninja_flutter/redux/payment/payment_state.dart';
 
@@ -29,6 +30,7 @@ abstract class CompanyState
       // STARTER: constructor - do not remove comment
       taskState: TaskState(),
       projectState: ProjectState(),
+      shopworkState: ShopworkState(),
       paymentState: PaymentState(),
       quoteState: QuoteState(),
     );
@@ -51,6 +53,7 @@ abstract class CompanyState
   TaskState get taskState;
 
   ProjectState get projectState;
+  ShopworkState get shopworkState;
 
   PaymentState get paymentState;
 

@@ -52,43 +52,74 @@ class _DashboardViewState extends State<DashboardView>
   Widget build(BuildContext context) {
     final localization = AppLocalization.of(context);
     final store = StoreProvider.of<AppState>(context);
-
+    final company = store.state.selectedCompany;
+    final user = company.user;
     return WillPopScope(
       onWillPop: () async => true,
       child: Scaffold(
-        drawer: AppDrawerBuilder(),
-        appBar: AppBar(
-          title: ListFilter(
-            title: AppLocalization.of(context).dashboard,
-            onFilterChanged: (value) {
-              store.dispatch(FilterCompany(value));
-            },
-          ),
-          actions: <Widget>[
-            ListFilterButton(
-              onFilterPressed: (String value) {
-                store.dispatch(FilterCompany(value));
-              },
-            ),
+        // drawer: AppDrawerBuilder(),
+        // appBar: AppBar(
+        //   // title: ListFilter(
+        //   //   title: AppLocalization.of(context).dashboard,
+        //   //   onFilterChanged: (value) {
+        //   //     store.dispatch(FilterCompany(value));
+        //   //   },
+        //   // ),
+        //   actions: <Widget>[
+        //     ListFilterButton(
+        //       onFilterPressed: (String value) {
+        //         store.dispatch(FilterCompany(value));
+        //       },
+        //     ),
+        //   ],
+        //   // bottom:
+        //   // store.state.uiState.filter != null
+        //   //     ? null
+        //   //     : TabBar(
+        //   //         controller: _controller,
+        //   //         tabs: [
+        //   //           Tab(
+        //   //             text: localization.overview,
+        //   //           ),
+        //   //           Tab(
+        //   //             text: localization.activity,
+        //   //           ),
+        //   //         ],
+        //   //       ),
+        // ),
+        body: Column(
+          children: <Widget>[
+            store.state.uiState.filter != null
+                ? null
+                : Container(
+                    color: Colors.blue,
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 25),
+                      child: SizedBox(
+                        height: 55,
+                        width: 1200,
+                        child: TabBar(
+                          controller: _controller,
+                          tabs: [
+                            Tab(
+                              text: localization.overview,
+                            ),
+                            Tab(
+                              text: localization.activity,
+                            ),
+                          ],
+                        ),
+                      ),
+                    )),
+            Expanded(
+              child: CustomTabBarView(
+                viewModel: widget.viewModel,
+                controller: _controller,
+              ),
+            )
           ],
-          bottom: store.state.uiState.filter != null
-              ? null
-              : TabBar(
-                  controller: _controller,
-                  tabs: [
-                    Tab(
-                      text: localization.overview,
-                    ),
-                    Tab(
-                      text: localization.activity,
-                    ),
-                  ],
-                ),
         ),
-        body: CustomTabBarView(
-          viewModel: widget.viewModel,
-          controller: _controller,
-        ),
+
         bottomNavigationBar: AppBottomBar(
           entityType: EntityType.quote,
           onSelectedSortField: (value) => store.dispatch(SortQuotes(value)),
@@ -140,6 +171,26 @@ class _DashboardViewState extends State<DashboardView>
             // ),
           ],
         ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+        floatingActionButton: user.canCreate(EntityType.quote)
+            ? FloatingActionButton(
+                backgroundColor: Theme.of(context).primaryColorDark,
+                onPressed: () {
+                  // store.dispatch(EditQuote(
+                  //     quote: InvoiceEntity(company: company, isQuote: true)
+                  //         .rebuild((b) => b
+                  //           ..clientId =
+                  //               store.state.quoteListState.filterEntityId ??
+                  //                   0),
+                  //     context: context));
+                },
+                child: Icon(
+                  Icons.add,
+                  color: Colors.white,
+                ),
+                tooltip: localization.newQuote,
+              )
+            : null,
       ),
     );
   }

@@ -19,6 +19,7 @@ dependencies:
   built_value: ^6.1.2
   built_collection: ^4.0.0
   memoize: ^2.0.0
+  scrollable_bottom_sheet: ^0.2.0+1
   url_launcher: ^3.0.3
   cached_network_image: ^0.4.2
   share: ^0.5.3
@@ -26,8 +27,8 @@ dependencies:
   flutter_slidable: ^0.4.6
   charts_flutter: ^0.4.0
   google_sign_in: ^3.2.4
-  firebase_auth: ^0.6.2+1
-  local_auth: ^0.3.0
+  firebase_auth: 
+  local_auth: 
   sentry: ^2.2.0
   odoo_api: ^1.0.2
   logs:
@@ -36,7 +37,8 @@ dependencies:
   #flutter_html_view: ^0.5.8
   #flutter_html: ^0.5.3
   #flutter_native_web: ^0.1.2
-
+  qr_code_scanner:
+  flutter_stetho:
 dev_dependencies:
   flutter_driver:
     sdk: flutter
